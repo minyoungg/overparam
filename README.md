@@ -15,7 +15,8 @@
 The layers work the same as any `torch.nn` layers. Important arguments are `depth`, `width`, `residual`, `batch_norm`. 
 Refer to the files for the full documentation.
 
-###  Overparam layers 
+<br>
+###  Getting started
 
 #### OverparamLinear layer (equivalence: `nn.Linear`) 
 
@@ -108,3 +109,14 @@ layer = OverparamConv2d(32, 32, kernel_sizes=3, padding=1, depth=2,
 layer = OverparamConv2d(32, 32, kernel_sizes=3, padding=1, depth=2, 
                         batch_norm=True, residual=True, residual_intervals=2)
 ```
+
+
+### Cite
+To cite the paper or the code:
+
+@article{huh2021lowranksimplicity,
+  title={The Low-Rank Simplicity Bias in Deep Networks},
+  author={Huh, Minyoung and Mobahi, Hossein and Zhang, Richard and Agrawal, Pulkit and Isola, Phillip},
+  journal={arXiv},
+  year={2021}
+}
