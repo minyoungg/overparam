@@ -1,4 +1,12 @@
-# PyTorch linear over-parameterized layers
+# Overparam layers
+PyTorch linear over-parameterization layers with automatic graph reduction. Official codebase used in:
+
+**The Low-Rank Simplicity Bias in Deep Networks**  
+[Minyoung Huh](http://minyounghuh.com/) &nbsp; [Hossein Mobahi]() &nbsp; [Richard Zhang](https://richzhang.github.io/) &nbsp; [Brian Cheung]() &nbsp; [Pulkit Agrawal]() &nbsp; [Pulkit Agrawal]()   
+MIT CSAIL &nbsp; Google Research  
+**arXiv 2021**
+**[[project page]](https://minyoungg.github.io/overparam/) | [[paper]]()**     
+
 
 ## 1. Installation
 <b> Developed on </b> 
@@ -12,10 +20,8 @@
 ```
 
 ## 2. Usage
-The layers work the same as any `torch.nn` layers. Important arguments are `depth`, `width`, `residual`, `batch_norm`. 
-Refer to the files for the full documentation.
+The layers work exactly the same as any `torch.nn` layers.
 
-<br>
 ###  Getting started
 
 #### (1a) OverparamLinear layer (equivalence: `nn.Linear`) 
@@ -33,7 +39,7 @@ x = torch.randn(1, 16)
 from overparam import OverparamConv2d
 import numpy as np
 ```
-
+ 
 We can construct 3 Conv2d layers with kernel dimensions of `5x5`, `3x3`, `1x1`
 ```python
 # Same padding
