@@ -6,116 +6,105 @@
 - <b>PyTorch 1.7</b> :fire:
 
 ```bash
-> git clone https://github.com/minyoungg/overparam-minimal
-> cd overparam-minimal
+> git clone https://github.com/minyoungg/overparam
+> cd overparam
 > pip install .
 ```
 
 ## 2. Usage
-Currently supports overparameterized linear (`EPLinear`) and conv2d layers (`EPConv2d`).   
-`EP` is just an abbreviation for expand-and-project. 
+The layers work the same as any `torch.nn` layers. Important arguments are `depth`, `width`, `residual`, `batch_norm`. 
+Refer to the files for the full documentation.
 
-The layers work exactly the same as any `torch.nn` layers. Few important arguments to take notice of are:
-`depth`, `width`, `residual`, `batch_norm`. Refer to the files for the full documentation.
+###  Overparam layers 
 
-<br>
-
-###  EPLinear layer (equivalence: `nn.Linear`) 
+#### OverparamLinear layer (equivalence: `nn.Linear`) 
 
 ```python
-from overparam_layers import EPLinear
+from overparam import OverparamLinear
  
-layer = EPLinear(4, 8, width=1, depth=4)
-x = torch.randn(1, 4)
-
-# Forward pass (expanded form)
-layer.train()
-y1 = layer(x)
-
-# Forward pass (collapsed form) [automatic]
-layer.eval()
-y2 = layer(x)
+layer = OverparamLinear(16, 32, width=1, depth=2)
+x = torch.randn(1, 16)
 ```
 
-To access the collapsed weights
+#### OverparamConv2d layer (equivalence: `nn.Conv2d`)
+
 ```python
-layer.eval()
-print(layer.weight)
-print(layer.bias)
-```
-
-<b> Supported parameterization </b>  
-Let `x` be the input, `F` and `G` be a set of linear layers, and `y` be the output.
-
-> Residual connection
-``` y = x + F(x) ```
-
-> Learnable residual connection
-``` y = G(x) + F(x) ```
-
-> Batch normalization (can be combined with residual connection)
-``` y = x + BN1D(F(x)) ```
-
-<br>
-
-
-
-### EPConv2d layer (equivalence: `nn.Conv2d`) 
-
-<b>(note)</b>: kernel_size is a function of the individual kernels
-
-To create a 3 layer of Convolution2D with `5x5`, `3x3`, `1x1` kernels.
-```python
-from overparam_layers import EPConv2d
+from overparam import OverparamConv2d
 import numpy as np
-
-kernel_sizes = [5, 3, 1]
 ```
 
-Compute the required padding to maintain spatial dimension
+We can construct 3 Conv2d layers with kernel dimensions of `5x5`, `3x3`, `1x1`
 ```python
+# Same padding
 padding = max((np.sum(kernel_sizes) - len(kernel_sizes) + 1) // 2, 0)
-```
 
-The effective kernel size is 
-```
-print(max((np.sum(kernel_sizes) - len(kernel_sizes) + 1) // 2, 0))
-```
+layer = OverparamConv2d(2, 4, kernel_sizes=[5, 3, 1], padding, depth=len(kernel_sizes))
 
-Now we can apply forward pass as usual
+# Get the effective kernel size
+print(layer.kernel_size)
+```
+When `kernel_sizes` is an integer, all proceeding layers are assumed to have kernel size of `1x1` layers. 
+
+#### Forward computation
+
 ```python
-layer = EPConv2d(2, 4, kernel_sizes, padding, depth=len(kernel_sizes))
-x = torch.randn(1, 2, 8, 8)
-
 # Forward pass (expanded form)
 layer.train()
-y1 = layer(x)
-
-# Forward pass (collapsed form) [automatic]
-layer.eval()
-y2 = layer(x)
+y = layer(x)
 ```
 
-To access the collapsed weights
-```python
-layer.eval()
+When calling `eval()` the model will automatically reduce the computation graph to its effective single-layer counterpart. 
+Forward pass in `eval` mode will use the effective weights instead.
 
+```python
+# Forward pass (collapsed form) [automatic]
+layer.eval()
+y = layer(x)
+```
+
+You can access the effective weights as follows:
+
+```python
 print(layer.weight)
 print(layer.bias)
 ```
 
+#### Automatic conversion
 
+```python
+import torchvision.models as models
+from overparam.utils import overparameterize
 
-<b> Supported parameterization </b>  
-Let `x` be the input, `F` and `G` be a set of linear layers, and `y` be the output.
+model = models.alexnet() # Replace this with YOUR_PYTORCH_MODEL()
+model = overparameterize(model, depth=2)
+```
 
-> Residual connection
-``` y = x + F(x) ```
+#### Batch-norm and Residual connections
+We also provide support for batch-norm and linear residual connections
 
-> Learnable residual connection
-``` y = G(x) + F(x) ```
+- batch-normalization (pseudo-linera layer -- linear only at `eval`)
+```python
+layer = OverparamConv2d(32, 32, kernel_sizes=3, padding=1, depth=2, 
+                        batch_norm=True)
+```
 
-> Batch normalization (can be combined with residual connection)
-``` y = x + BN2D(F(x)) ```
+- residual-connection 
+```python
+# every 2 layers, a residual connection is added
+layer = OverparamConv2d(32, 32, kernel_sizes=3, padding=1, depth=2,
+                        residual=True, residual_intervals=2)
+```
 
+- multiple residual connection
+```python
+# every modulo [1, 2, 3] layers, a residual connection is added
+layer = OverparamConv2d(32, 32, kernel_sizes=3, padding=1, depth=2, 
+                        residual=True, residual_intervals=[1, 2, 3])
+```
 
+- batch-norm and residual connection 
+```python
+# mimics `BasicBlock` in ResNets
+layer = OverparamConv2d(32, 32, kernel_sizes=3, padding=1, depth=2, 
+                        batch_norm=True, residual=True, residual_intervals=2)
+```
