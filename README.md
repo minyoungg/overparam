@@ -18,7 +18,7 @@ Refer to the files for the full documentation.
 <br>
 ###  Getting started
 
-#### OverparamLinear layer (equivalence: `nn.Linear`) 
+#### (1a) OverparamLinear layer (equivalence: `nn.Linear`) 
 
 ```python
 from overparam import OverparamLinear
@@ -27,7 +27,7 @@ layer = OverparamLinear(16, 32, width=1, depth=2)
 x = torch.randn(1, 16)
 ```
 
-#### OverparamConv2d layer (equivalence: `nn.Conv2d`)
+#### (1b) OverparamConv2d layer (equivalence: `nn.Conv2d`)
 
 ```python
 from overparam import OverparamConv2d
@@ -46,7 +46,7 @@ print(layer.kernel_size)
 ```
 When `kernel_sizes` is an integer, all proceeding layers are assumed to have kernel size of `1x1` layers. 
 
-#### Forward computation
+#### (2) Forward computation
 
 ```python
 # Forward pass (expanded form)
@@ -70,7 +70,7 @@ print(layer.weight)
 print(layer.bias)
 ```
 
-#### Automatic conversion
+#### (3) Automatic conversion
 
 ```python
 import torchvision.models as models
@@ -80,10 +80,10 @@ model = models.alexnet() # Replace this with YOUR_PYTORCH_MODEL()
 model = overparameterize(model, depth=2)
 ```
 
-#### Batch-norm and Residual connections
+#### (4) Batch-norm and Residual connections
 We also provide support for batch-norm and linear residual connections
 
-- batch-normalization (pseudo-linera layer -- linear only at `eval`)
+- batch-normalization (pseudo-linera layer: linear during `eval` mode)
 ```python
 layer = OverparamConv2d(32, 32, kernel_sizes=3, padding=1, depth=2, 
                         batch_norm=True)
@@ -111,7 +111,7 @@ layer = OverparamConv2d(32, 32, kernel_sizes=3, padding=1, depth=2,
 ```
 
 
-### Cite
+### 3. Cite
 To cite the paper or the code:
 
 @article{huh2021lowranksimplicity,
