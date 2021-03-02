@@ -1,9 +1,10 @@
 # Overparam layers
-PyTorch linear over-parameterization layers with automatic graph reduction. Official codebase used in:
+PyTorch linear over-parameterization layers with automatic graph reduction.  
+Official codebase used in:
 
 **The Low-Rank Simplicity Bias in Deep Networks**  
-[Minyoung Huh](http://minyounghuh.com/) &nbsp; [Hossein Mobahi]() &nbsp; [Richard Zhang](https://richzhang.github.io/) &nbsp; [Brian Cheung]() &nbsp; [Pulkit Agrawal]() &nbsp; [Pulkit Agrawal]()   
-MIT CSAIL &nbsp; Google Research  
+**[Minyoung Huh](http://minyounghuh.com/) &nbsp; [Hossein Mobahi]() &nbsp; [Richard Zhang](https://richzhang.github.io/) &nbsp; [Brian Cheung]() &nbsp; [Pulkit Agrawal]() &nbsp; [Phillip Isola]()**     
+**MIT CSAIL &nbsp; Google Research**
 **arXiv 2021**
 **[[project page]](https://minyoungg.github.io/overparam/) | [[paper]]()**     
 
@@ -50,7 +51,7 @@ layer = OverparamConv2d(2, 4, kernel_sizes=[5, 3, 1], padding, depth=len(kernel_
 # Get the effective kernel size
 print(layer.kernel_size)
 ```
-When `kernel_sizes` is an integer, all proceeding layers are assumed to have kernel size of `1x1` layers. 
+When `kernel_sizes` is an integer, all proceeding layers are assumed to have kernel size of `1x1`. 
 
 #### (2) Forward computation
 
@@ -87,7 +88,7 @@ model = overparameterize(model, depth=2)
 ```
 
 #### (4) Batch-norm and Residual connections
-We also provide support for batch-norm and linear residual connections
+We also provide support for batch-norm and linear residual connections.
 
 - batch-normalization (pseudo-linera layer: linear during `eval` mode)
 ```python
