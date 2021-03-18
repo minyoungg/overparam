@@ -285,20 +285,20 @@
 
       <hr>
       <center> <h2> Results </h2> </center>
-      <p><b>Insight 1</b>: <u>The volume of low-rank functions induced by the network parameters increase as a function of the number of layers.</u></p>
-      <p>There exists more probability mass for lower-rank rank solutions when adding more layers. The effective rank is computed on the effective weights for linear networks, and on the kernel for non-linear networks.</p>
+      <p><b>Insight 1</b>: <u>The volume of low-rank parameters increases as a function of the number of layers.</u></p>
+      <p>There exists more probability mass for lower-rank rank solutions when adding more layers. The effective rank is computed on the effective weights for linear networks and on the kernel for non-linear networks.</p>
       <p><img class="rounded"  src="./images/erank-pdf.png" width="800px"></p>
 
       <br><br>
-      <p><b>Insight 2</b>: <u>The parameterization of the network ultimately determine which solution the model will converge to.</u></p>
-      <p>In low-rank under-determined regime, models with the same training error results in different test-error. Too shallow or too deep networks perfroms sub-optimally.
-      On the contrary, if the underlying solution is full-rank, deep models fail to converge.</p>
+      <p><b>Insight 2</b>: <u>The parameterization of the network ultimately determines which solution the model will converge to.</u></p>
+      <p>In a low-rank under-determined regime, models with the same training error result in different test-error. Too shallow or too deep networks performs sub-optimally. On the contrary, if the underlying solution is full-rank, deep models fail to converge.</p>
       <p><img class="rounded"  src="./images/init-final-magma.png" width="800px"></p>
 
       <br><br>
-      <p><b>Insight 3</b>: <u>Linear over-parameterization of non-linear networks can be used to induce low-rank weights without increasing the modeling capacity, improving generalization performance thereby. </u>
-      <p> Singular values of a CNN for both original (left) and linearly over-parameterized (right) model throughout training.
-        The model is over-parameterized by a factor of 4.
+      <p><b>Insight 3</b>: <u>Linear over-parameterization of non-linear networks can be used to improve generalization performance. </u>
+      <p>
+        Linear over-parameterization induces low-rank weights without increasing the modeling capacity.
+        The figure below shows the singular values of a CNN for both the original (left) and the linearly over-parameterized (right) model throughout training.
         The over-parameterized model exhibits less overfitting, with lower training accuracy and higher testing accuracy. </p>
 
       <p><img class="rounded"  src="./images/sv-dynamics.png" width="800px"></p>
