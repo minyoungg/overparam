@@ -1,11 +1,12 @@
 # Overparam layers
-PyTorch linear over-parameterization layers with automatic graph reduction.  
+PyTorch linear over-parameterization layers with automatic graph reduction.   
+
 Official codebase used in:
 
 **The Low-Rank Simplicity Bias in Deep Networks**  
-[Minyoung Huh](http://minyounghuh.com/) &nbsp; [Hossein Mobahi]() &nbsp; [Richard Zhang](https://richzhang.github.io/) &nbsp; [Brian Cheung]() &nbsp; [Pulkit Agrawal]() &nbsp; [Phillip Isola]()     
-MIT CSAIL &nbsp; Google Research   
-**arXiv 2021**
+**[Minyoung Huh](http://minyounghuh.com/) &nbsp; [Hossein Mobahi]() &nbsp; [Richard Zhang](https://richzhang.github.io/) &nbsp; [Brian Cheung]() &nbsp; [Pulkit Agrawal]() &nbsp; [Phillip Isola]()**     
+**MIT CSAIL &nbsp; Google Research &nbsp; Adobe Research &nbsp; MIT BCS  **   
+**arXiv 2021**   
 **[[project page]](https://minyoungg.github.io/overparam/) | [[paper]]()**     
 
 
