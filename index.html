@@ -176,12 +176,12 @@
                 </td>
                     <td align="center" width="160px">
               <center>
-                <span style="font-size:16px"><a href="https://richzhang.github.io/">Richard Zhang</a><sup>1</sup></span>
+                <span style="font-size:16px"><a href="https://richzhang.github.io/">Richard Zhang</a><sup>3</sup></span>
                 </center>
                 </td>
                     <td align="center" width="160px">
               <center>
-                <span style="font-size:16px"><a href="https://richzhang.github.io/">Brian Cheung</a><sup>1</sup></span>
+                <span style="font-size:16px"><a href="https://richzhang.github.io/">Brian Cheung</a><sup>1 4</sup></span>
                 </center>
                 </td>
                     <td align="center" width="160px">
@@ -199,7 +199,7 @@
 
           <table align="center" width="700px">
             <tbody><tr>
-                    <td align="center" width="100px">
+                    <td align="center" width="50px">
               <center>
                     <span style="font-size:16px"></span>
                 </center>
@@ -214,7 +214,17 @@
                     <span style="font-size:16px"><sup>2</sup>Google Research</span>
                 </center>
                 </td>
-                    <td align="center" width="100px">
+                    <td align="center" width="250px">
+              <center>
+                    <span style="font-size:16px"><sup>3</sup>Adobe Research</span>
+                </center>
+                </td>
+                    <td align="center" width="250px">
+              <center>
+                    <span style="font-size:16px"><sup>4</sup>MIT BCS</span>
+                </center>
+                </td>
+                    <td align="center" width="50px">
               <center>
                     <span style="font-size:16px"></span>
                 </center>
@@ -226,7 +236,7 @@
                 <center>
                   <br>
                   <span style="font-size:20px">Code
-                    <a href="https://github.com/minyoungg/pix2latent"> [GitHub]</a>
+                    <a href="#"> [GitHub]</a>
                   </span>
                 </center>
               </td>
@@ -235,7 +245,7 @@
                 <center>
                   <br>
                   <span style="font-size:20px">
-                    Paper <a href="http://people.csail.mit.edu/minhuh/papers/pix2latent/arxiv_v2.pdf"> [arXiv]</a>
+                    Paper <a href="#"> [arXiv]</a>
                   </span>
                 </center>
               </td>
@@ -275,7 +285,25 @@
 
       <hr>
       <center> <h2> Results </h2> </center>
+      <p><b>Insight 1</b>: <u>The volume of low-rank functions induced by the network parameters increase as a function of the number of layers.</u></p>
+      <p>There exists more probability mass for lower-rank rank solutions when adding more layers. The effective rank is computed on the effective weights for linear networks, and on the kernel for non-linear networks.</p>
+      <p><img class="rounded"  src="./images/erank-pdf.png" width="800px"></p>
 
+      <br><br>
+      <p><b>Insight 2</b>: <u>The parameterization of the network ultimately determine which solution the model will converge to.</u></p>
+      <p>In low-rank under-determined regime, models with the same training error results in different test-error. Too shallow or too deep networks perfroms sub-optimally.
+      On the contrary, if the underlying solution is full-rank, deep models fail to converge.</p>
+      <p><img class="rounded"  src="./images/init-final-magma.png" width="800px"></p>
+
+      <br><br>
+      <p><b>Insight 3</b>: <u>Linear over-parameterization of non-linear networks can be used as an implict rank regularizer without increasing the modeling capacity, improving generalization performance thereby. </u>
+      <p> Singular values of a CNN for both original (left) and linearly over-parameterized (right) model throughout training.
+        The model is over-parameterized by a factor of 4.
+        The over-parameterized model exhibits less overfitting, with lower training accuracy and higher testing accuracy. </p>
+
+      <p><img class="rounded"  src="./images/sv-dynamics.png" width="800px"></p>
+
+      <br>
       <hr>
       <center> <h2> Try our PyTorch code </h2> </center>
       Install our code <a href="https://github.com/minyoungg/overparam-layers"> [github] </a>
@@ -307,7 +335,14 @@
 
       <hr>
       <center> <h2> Acknowledgements </h2> </center>
-      <p> We would like to thank Yen-Chen Lin, Lucy Chai, Anurag Ajay for reading over the manuscript, and Jeffrey Pennington with the fruitful discussion.
+      <p> We would like to thank Anurag Ajay, Lucy Chai, Tongzhou Wang, and Yen-Chen Lin for reading over the manuscript and Jeffrey Pennington and Alexei A. Efros for fruitful discussions.
+          Minyoung Huh is funded by DARPA Machine Common Sense and MIT STL. Brian Cheung is funded by an MIT BCS Fellowship.
+          <br><br>
+
+          This research was also partly sponsored by the United States Air Force Research Laboratory and the United States Air Force Artificial Intelligence Accelerator and was accomplished under Cooperative Agreement Number FA8750-19-2-1000.
+          The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the United States Air Force or the U.S. Government.
+          The U.S. Government is authorized to reproduce and distribute reprints for Government purposes, notwithstanding any copyright notation herein.
+
           <br> <br>
           <a href="https://richzhang.github.io/colorization/">Website template edited from Colorful Colorization</a>.
       </p>

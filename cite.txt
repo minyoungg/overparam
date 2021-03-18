@@ -1,7 +1,6 @@
-@inproceedings{huh2020ganprojection,
-    title={Transforming and Projecting Images to Class-conditional Generative Networks}
-    author={Huh, Minyoung and Zhang, Richard and Zhu, Jun-Yan
-            and Paris, Sylvain and Hertzmann, Aaron},
-    booktitle={ECCV},
-    year={2020}
+@article{huh2021lowranksimplicity,
+  title={The Low-Rank Simplicity Bias in Deep Networks},
+  author={Huh, Minyoung and Mobahi, Hossein and Zhang, Richard and Agrawal, Pulkit and Isola, Phillip},
+  journal={arXiv},
+  year={2021}
 }
