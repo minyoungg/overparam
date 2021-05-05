@@ -75,9 +75,9 @@ def graph_collapse(computation_graph, layer_dict):
     bias = equation_to_bias(b_eqn, layer_dict)
 
     if bias is not None:
-        bias = bias.to(device)
+        bias = bias.data.to(device)
 
-    return weight.to(device), bias
+    return weight.data.to(device), bias
 
 
 def parse_equation(eqn):
