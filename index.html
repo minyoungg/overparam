@@ -235,8 +235,8 @@
               <td align="center" width="200px">
                 <center>
                   <br>
-                  <span style="font-size:20px">Code
-                    <a href="https://github.com/minyoungg/overparam"> [GitHub]</a>
+                  <span style="font-size:20px">
+                    <a href="https://github.com/minyoungg/overparam"><b>⏵code</b></a>
                   </span>
                 </center>
               </td>
@@ -245,7 +245,17 @@
                 <center>
                   <br>
                   <span style="font-size:20px">
-                    Paper <a href="https://arxiv.org/abs/2103.10427"> [arXiv]</a>
+                    <a href="./resources/overparam-v2.pdf"><b>⏵paper</b></a>
+                    <br />
+                  </span>
+                </center>
+              </td>
+
+              <td align="center" width="200px">
+                <center>
+                  <br>
+                  <span style="font-size:20px">
+                    <a href="https://arxiv.org/abs/2103.10427"><b>⏵arxiv</b></a>
                   </span>
                 </center>
               </td>
@@ -255,58 +265,66 @@
                 <center>
                   <br>
                   <span style="font-size:20px">
-                    Cite <a href="./cite.txt"> [BibTeX]</a>
+                    <a href="./cite.txt"><b>⏵cite</b></a>
                   </span>
                 </center>
               </td>
 
-            </tr></tbody>
+            </tr>
+          </tbody>
           </table>
+          <br />
+          <h4>**For the latest version use [<a href="./resources/overparam-v2.pdf">paper</a>]: (rev2 - 10/11/21)</h4>
 
-        <br><hr>
+        <hr>
         <center>
           <h2>
-            Abstract
+            <b>Abstract</b>
           </h2>
         </center>
         <p>
         <left>
-          Modern deep neural networks are highly over-parameterized compared to the data on which they are trained,
-          yet they often generalize remarkably well. A flurry of recent work has asked: why do deep networks not overfit to their training data?
-          We investigate the hypothesis that deeper nets are implicitly biased to find lower rank solutions, and these are solutions that generalize well.
-          We prove that the percent volume of low effective-rank solutions increases monotonically as linear neural networks are made deeper.
-          We empirically find that a similar result holds for non-linear networks: deeper non-linear networks learn a feature space whose kernel has a lower rank.
-          We then demonstrate how linear over-parameterization of deep non-linear models can be used to induce low-rank bias,
-          improving generalization performance without changing model capacity.
-          We evaluate on various model architectures and demonstrate that linearly over-parameterized models outperform existing baselines on image classification tasks, including ImageNet.
+          Modern deep neural networks are highly over-parameterized compared to the data on which they are trained, yet they often generalize remarkably well. A flurry of recent work has asked: why do deep networks not overfit to their training data?
+    In this work, we make a series of empirical observations that investigate the hypothesis that deeper networks are inductively biased to find solutions with lower rank embeddings. We conjecture that this bias exists because the volume of functions that maps to low-rank embedding increases with depth. We show empirically that our claim holds true on finite width linear and non-linear models and show that these are the solutions that generalize well. We then show that the low-rank simplicity bias exists even after training, using a wide variety of commonly used optimizers. We found this phenomenon to be resilient to initialization, hyper-parameters, and learning methods.
+    We further demonstrate how linear over-parameterization of deep non-linear models can be used to induce low-rank bias, improving generalization performance without changing the effective model capacity. Practically, we demonstrate that simply linearly over-parameterizing standard models at training time can improve performance on image classification tasks, including ImageNet.
         </left>
       </p>
       <br>
 
       <hr>
-      <center> <h2> Results </h2> </center>
-      <p><b>Insight 1</b>: <u>The volume of low-rank parameters increases as a function of the number of layers.</u></p>
-      <p>There exists more probability mass for lower-rank rank solutions when adding more layers. The effective rank is computed on the effective weights for linear networks and on the kernel for non-linear networks.</p>
-      <p><img class="rounded"  src="./images/erank-pdf.png" width="800px"></p>
+      <center> <h2> <b>Results</b> </h2> </center>
+      <br />
+      <h4 style="background-color:ECECEC; padding:20;">⏵<b><u>Observation 1</u></b><br />
+          Randomly initialized deep neural networks are biased to correspond to Gram matrices with a low effective rank.
+      </h4>
+      <p> </p>
+      <p><img class="rounded"  src="./images/obs-1.png" width="800px"></p>
 
       <br><br>
-      <p><b>Insight 2</b>: <u>The parameterization of the network ultimately determines which solution the model will converge to.</u></p>
-      <p>In a low-rank under-determined regime, models with the same training error result in different test-error. Too shallow or too deep networks performs sub-optimally. On the contrary, if the underlying solution is full-rank, deep models fail to converge.</p>
-      <p><img class="rounded"  src="./images/init-final-magma.png" width="800px"></p>
+      <h4 style="background-color:ECECEC; padding:20;">⏵<b><u>Observation 2</u></b><br />
+          Deep neural networks trained with gradient descent also learns to map data to simple embedding with low effective rank.
+      </h4>
+      <p> </p>
+      <p><img class="rounded"  src="./images/obs-2.png" width="800px"></p>
 
       <br><br>
-      <p><b>Insight 3</b>: <u>Linear over-parameterization of non-linear networks can be used to improve generalization performance. </u>
-      <p>
-        Linear over-parameterization induces low-rank weights without increasing the modeling capacity.
-        The figure below shows the singular values of a CNN for both the original (left) and the linearly over-parameterized (right) model throughout training.
-        The over-parameterized model exhibits less overfitting, with lower training accuracy and higher testing accuracy. </p>
+      <h4 style="background-color:ECECEC; padding:20;">⏵<b><u>Observation 3</u></b><br />
+          Deep neural networks trained with common and natural choices of optimizers also exhibit the low-rank embedding bias.
+      </h4>
+      <p> </p>
 
-      <p><img class="rounded"  src="./images/sv-dynamics.png" width="800px"></p>
+      <p><center><img class="rounded"  src="./images/obs-3.png" width="500px"></center></p>
+
+      <br><br>
+      <h4 style="background-color:ECECEC; padding:20;">⏵<b><u>Observation 4</u></b><br />
+          Deep neural networks are biased towards learning low-rank embeddings regardless of the initialization.
+      </h4>
+      <p><img class="rounded"  src="./images/obs-4.png" width="800px"></p>
 
       <br>
       <hr>
       <center> <h2> Try our PyTorch code </h2> </center>
-      Install our code <a href="https://github.com/minyoungg/overparam"> [github] </a>
+      Install our code <a href="https://github.com/minyoungg/overparam"> [<b>github</b>] </a>
       <pre><code>
       <font color="00509d">>>></font> <font color="1a936f">git clone</font> https://github.com/minyoungg/overparam
       <font color="00509d">>>></font> <font color="1a936f">cd</font> overparam
@@ -324,13 +342,21 @@
       layer = <font color="118ab2">OverparamConv2d</font>(<font color="f77f00">32, 64, kernel_sizes=(3, 3, 1), stride=1, padding=1</font>)
       </code></pre>
 
-      Automatically linear over-parameterize existing models
+      Automatic linear over-parameterization of existing models
       <pre><code>
       <font color="ef476f">import</font> torchvision.models as models
       <font color="ef476f">from</font> overparam.utils <font color="ef476f">import</font> overparameterize
 
       model = models.alexnet()
       model = <font color="118ab2">overparameterize</font>(<font color="f77f00">model, depth=2</font>)
+      </code></pre>
+
+      To compute the effective rank of 2D matrix using PyTorch
+      <pre><code>
+      <font color="#9d4edd">def</font> <font color="118ab2">effective_rank</font>(w):
+          s = w.cpu().svd(compute_uv=False)[1]
+          s_hat = s / s.sum()
+          <font color="#9d4edd">return</font> - (s_hat * s_hat.log()).sum()
       </code></pre>
 
       <br>
