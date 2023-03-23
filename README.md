@@ -121,10 +121,12 @@ layer = OverparamConv2d(32, 32, kernel_sizes=3, padding=1, depth=2,
 
 ### 3. Cite
 ```
-@article{huh2021lowranksimplicity,
-  title={The Low-Rank Simplicity Bias in Deep Networks},
-  author={Huh, Minyoung and Mobahi, Hossein and Zhang, Richard and Agrawal, Pulkit and Isola, Phillip},
-  journal={arXiv},
-  year={2021}
+@article{huh2023simplicitybias,
+    title={The Low-Rank Simplicity Bias in Deep Networks},
+    author={Minyoung Huh and Hossein Mobahi and Richard Zhang and Brian Cheung and Pulkit Agrawal and Phillip Isola},
+    journal={Transactions on Machine Learning Research},
+    issn={2835-8856},
+    year={2023},
+    url={https://openreview.net/forum?id=bCiNWDmlY2},
 }
 ```
