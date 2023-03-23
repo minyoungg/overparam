@@ -236,7 +236,7 @@
                 <center>
                   <br>
                   <span style="font-size:20px">
-                    <a href="https://github.com/minyoungg/overparam"><b>⏵code</b></a>
+                    <a href="https://github.com/minyoungg/overparam"><b>code</b></a>
                   </span>
                 </center>
               </td>
@@ -245,7 +245,7 @@
                 <center>
                   <br>
                   <span style="font-size:20px">
-                    <a href="./resources/overparam-v2.pdf"><b>⏵paper</b></a>
+                    <a href="./resources/overparam-v3.pdf"><b>paper</b></a>
                     <br />
                   </span>
                 </center>
@@ -255,7 +255,7 @@
                 <center>
                   <br>
                   <span style="font-size:20px">
-                    <a href="https://arxiv.org/abs/2103.10427"><b>⏵arxiv</b></a>
+                    <a href="https://arxiv.org/abs/2103.10427"><b>arxiv</b></a>
                   </span>
                 </center>
               </td>
@@ -265,7 +265,7 @@
                 <center>
                   <br>
                   <span style="font-size:20px">
-                    <a href="./cite.txt"><b>⏵cite</b></a>
+                    <a href="./cite.txt"><b>cite</b></a>
                   </span>
                 </center>
               </td>
@@ -274,8 +274,6 @@
           </tbody>
           </table>
           <br />
-          <h4>**For the latest version always use [<a href="./resources/overparam-v2.pdf">paper</a>]: (current: rev2 - 10/11/21)</h4>
-
         <hr>
         <center>
           <h2>
@@ -285,8 +283,8 @@
         <p>
         <left>
           Modern deep neural networks are highly over-parameterized compared to the data on which they are trained, yet they often generalize remarkably well. A flurry of recent work has asked: why do deep networks not overfit to their training data?
-    In this work, we make a series of empirical observations that investigate the hypothesis that deeper networks are inductively biased to find solutions with lower rank embeddings. We conjecture that this bias exists because the volume of functions that maps to low-rank embedding increases with depth. We show empirically that our claim holds true on finite width linear and non-linear models and show that these are the solutions that generalize well. We then show that the low-rank simplicity bias exists even after training, using a wide variety of commonly used optimizers. We found this phenomenon to be resilient to initialization, hyper-parameters, and learning methods.
-    We further demonstrate how linear over-parameterization of deep non-linear models can be used to induce low-rank bias, improving generalization performance without changing the effective model capacity. Practically, we demonstrate that simply linearly over-parameterizing standard models at training time can improve performance on image classification tasks, including ImageNet.
+    In this work, we make a series of empirical observations that investigate and extend the hypothesis that deeper networks are inductively biased to find solutions with lower effective rank embeddings. We conjecture that this bias exists because the volume of functions that maps to low effective rank embedding increases with depth. We show empirically that our claim holds true on finite width linear and non-linear models on practical learning paradigms and show that on natural data, these are often the solutions that generalize well. We then show that the simplicity bias exists at both initialization and after training and is resilient to hyper-parameters and learning methods.
+    We further demonstrate how linear over-parameterization of deep non-linear models can be used to induce low-rank bias, improving generalization performance on CIFAR and ImageNet without changing the modeling capacity.
         </left>
       </p>
       <br>
@@ -294,21 +292,21 @@
       <hr>
       <center> <h2> <b>Results</b> </h2> </center>
       <br />
-      <h4 style="background-color:ECECEC; padding:20;">⏵<b><u>Observation 1</u></b><br />
-          Randomly initialized deep neural networks are biased to correspond to Gram matrices with a low effective rank.
+      <h4 style="background-color:ECECEC; padding:20;"><b><u>Observation 1</u></b><br />
+          Randomly initialized deep nets are biased to correspond to Gram matrices with a low effective rank.
       </h4>
       <p> </p>
       <p><img class="rounded"  src="./images/obs-1.png" width="800px"></p>
 
       <br><br>
-      <h4 style="background-color:ECECEC; padding:20;">⏵<b><u>Observation 2</u></b><br />
-          Deep neural networks trained with gradient descent also learns to map data to simple embedding with low effective rank.
+      <h4 style="background-color:ECECEC; padding:20;"><b><u>Observation 2</u></b><br />
+          Deep neural networks trained with gradient descent also learn to map data to simple embedding with low effective rank.
       </h4>
       <p> </p>
       <p><img class="rounded"  src="./images/obs-2.png" width="800px"></p>
 
       <br><br>
-      <h4 style="background-color:ECECEC; padding:20;">⏵<b><u>Observation 3</u></b><br />
+      <h4 style="background-color:ECECEC; padding:20;"><b><u>Observation 3</u></b><br />
           Deep neural networks trained with common and natural choices of optimizers also exhibit the low-rank embedding bias.
       </h4>
       <p> </p>
@@ -316,8 +314,8 @@
       <p><center><img class="rounded"  src="./images/obs-3.png" width="500px"></center></p>
 
       <br><br>
-      <h4 style="background-color:ECECEC; padding:20;">⏵<b><u>Observation 4</u></b><br />
-          Deep neural networks are biased towards learning low-rank embeddings regardless of the initialization.
+      <h4 style="background-color:ECECEC; padding:20;"><b><u>Observation 4</u></b><br />
+          Deep neural networks are biased towards learning low effective-rank embeddings and are insensitive to initialization.
       </h4>
       <p><img class="rounded"  src="./images/obs-4.png" width="800px"></p>
 
