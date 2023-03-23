@@ -6,8 +6,8 @@ Official codebase used in:
 **The Low-Rank Simplicity Bias in Deep Networks**  
 [Minyoung Huh](http://minyounghuh.com/) &nbsp; [Hossein Mobahi]() &nbsp; [Richard Zhang](https://richzhang.github.io/) &nbsp; [Brian Cheung]() &nbsp; [Pulkit Agrawal]() &nbsp; [Phillip Isola]()     
 MIT CSAIL &nbsp; Google Research &nbsp; Adobe Research &nbsp; MIT BCS   
-arXiv 2021   
-**[[project page]](https://minyoungg.github.io/overparam/) | [[paper]](https://arxiv.org/abs/2103.10427)**     
+TMLR 2023 (arXiv 2021).    
+**[[project page]](https://minyoungg.github.io/overparam/) | [[paper]](https://openreview.net/pdf?id=bCiNWDmlY2) | [[arXiv]](https://arxiv.org/abs/2103.10427)**     
 
 
 ## 1. Installation
